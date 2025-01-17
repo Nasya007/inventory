@@ -49,11 +49,11 @@
     </style>
   </head>
   <body>
-    <div class="icon-container">
-      <i class="fa-solid fa-house menu-icon" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" title="Home"></i>
-      <i class="fa-solid fa-user menu-icon" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" title="Profile"></i>
-      <i class="fa-solid fa-cog menu-icon" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" title="Settings"></i>
-      <i class="fa-solid fa-sign-out menu-icon" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" title="Logout"></i>
+    <div class="icon-container" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+      <i class="fa-solid fa-house menu-icon" title="Home"></i>
+      <i class="fa-solid fa-user menu-icon" title="Profile"></i>
+      <i class="fa-solid fa-cog menu-icon" title="Settings"></i>
+      <i class="fa-solid fa-sign-out menu-icon" title="Logout"></i>
     </div>
 
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
