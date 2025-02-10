@@ -44,7 +44,6 @@
     }
     .sidebar.expanded {
       width: 230px;
-      
     }
     .menu-icon {
       font-size: 1.5rem;
