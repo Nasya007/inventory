@@ -1,141 +1,350 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Menu</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <style>
-    /* Contenedor del menú lateral */
-    .icon-container {
-      position: fixed;
-      height: 100%;
-      width: 60px;
-      top: 0;
-      left: 0;
-      background-color: rgb(59, 59, 59);
-      display: flex;
-      flex-direction: column;
-      padding-top: 10px;
-      gap: 20px;
-      transition: width 0.3s ease;
-      overflow: hidden;
-      z-index: 1050;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caja</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
 
-    /* Expandir menú lateral */
-    .icon-container:hover {
-      width: 230px;
-    }
+        /* ENCABEZADO */
+        .header {
+            background-color: #212529;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            height: 60px;
+        }
 
-    /* Estilo de los íconos */
-    .menu-icon {
-      font-size: 1.5rem;
-      color: rgb(201, 200, 200);
-      margin-right: 10px;
-    }
+        .logo img {
+            height: 40px;
+        }
+        /* BARRA DE BÚSQUEDA */
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    /* Texto del menú */
-    .nav-link-text {
-      font-size: 1rem;
-      color: #f4f4f4;
-      white-space: nowrap;
-      opacity: 0; 
-      visibility: hidden; 
-      transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
+        .search-bar input {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 200px;
+            transition: all 0.3s ease-in-out;
+        }
 
-    .icon-container:hover .nav-link-text{
-      opacity: 1;  
-      visibility: visible; 
-    }
-    .nav-item {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      padding: 10px 15px;
-      background-color: transparent;
-      transition: background-color 0.3s ease;
-      border-bottom: 1px solid #444; /* Línea separadora */
-    }
+        .search-bar input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+        }
 
-    .nav-item:hover {
-      background-color: #444;
-    }
+        .search-bar button {
+            padding: 8px 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-    .nav-item i {
-      flex-shrink: 0;
-    }
-    .menu-section-title {
-      font-size: 0.9rem;
-      color: #bbb;
-      padding-left: 15px;
-      margin-bottom: 5px;
-      text-transform: uppercase;
-      opacity: 0;
-      visibility: hidden; 
-      transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
+        .search-bar button:hover {
+            background-color: #0056b3;
+        }
 
-    .icon-container:hover .menu-section-title {
-      opacity: 1;
-      visibility: visible;
-    }
-  </style>
+        /* PERFIL DEL USUARIO */
+        .user-profile {
+            position: relative;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .user-profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+
+        .user-info {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #333;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            width: 200px;
+            text-align: left;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .user-info p, .user-info a {
+            margin: 5px 0;
+            color: white;
+            text-decoration: none;
+        }
+
+        .user-info a:hover {
+            text-decoration: underline;
+        }
+
+        .user-info img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto 10px;
+        }
+
+
+        /* MENU LATERAL */
+        .sidebar {
+            position: fixed;
+            height: calc(100% - 60px); /* Ajusta la altura restando la del header */
+            width: 60px;
+            top: 60px; /* Coloca el menú debajo del header */
+            left: 10px;
+            background-color: rgb(59, 59, 59);
+            display: flex;
+            flex-direction: column;
+            padding-top: 10px;
+            gap: 20px;
+            transition: width 0.3s ease, left 0.3s ease;
+            overflow: hidden;
+            z-index: 1050;
+            border-radius: 10px;
+        }
+
+        .sidebar.expanded {
+            width: 230px;
+        }
+
+        .menu-icon {
+            font-size: 1.5rem;
+            color: rgb(201, 200, 200);
+            margin-right: 10px;
+        }
+
+        .nav-link-text {
+            font-size: 1rem;
+            color: #f4f4f4;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .sidebar.expanded .nav-link-text {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 10px 15px;
+            transition: background-color 0.3s ease;
+            border-bottom: 1px solid #444;
+        }
+
+        .nav-item:hover {
+            background-color: #444;
+        }
+
+        .toggle-btn {
+            position: absolute;
+            top: 15px;
+            right: -18px;
+            background: #666;
+            color: white;
+            border: 2px solid white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s ease, background 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .toggle-btn:hover {
+            background: #888;
+        }
+
+        .toggle-btn i {
+            font-size: 1.3rem;
+        }
+
+        .sidebar.expanded .toggle-btn {
+            transform: rotate(180deg);
+        }
+
+        /* Contenido principal */
+        .content {
+            margin-left: 90px;
+            margin-top: 80px;
+            padding: 20px;
+        }
+
+        /* PERFIL DEL USUARIO */
+        .user-profile {
+            position: relative;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .user-profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+
+        .user-info {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #333;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            width: 200px;
+            text-align: left;
+        }
+
+        .user-info p, .user-info a {
+            margin: 5px 0;
+            color: white;
+            text-decoration: none;
+        }
+
+        .user-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* FECHA Y HORA */
+        .current-time {
+            margin-right: 15px;
+        }
+    </style>
 </head>
 <body>
-  <div class="icon-container">
-    <!-- Sección principal -->
-    <div class="menu-section">
-      <div class="menu-section-title">Principal</div>
-      <div class="nav-item">
+
+<!-- MENU LATERAL -->
+<div class="sidebar" id="sidebar">
+    <button class="toggle-btn" id="toggleBtn">
+        <i class="fa-solid fa-chevron-right" id="toggleIcon"></i>
+    </button>
+
+    <div class="nav-item">
         <i class="fa-solid fa-house menu-icon"></i>
         <span class="nav-link-text">Home</span>
-      </div>
-      <div class="nav-item">
+    </div>
+    <div class="nav-item">
         <i class="fa-solid fa-user menu-icon"></i>
         <span class="nav-link-text">Profile</span>
-      </div>
     </div>
-    <!-- Sección de configuración -->
-    <div class="menu-section">
-      <div class="menu-section-title">Configuración</div>
-      <div class="nav-item">
+    <div class="nav-item">
         <i class="fa-solid fa-cog menu-icon"></i>
-        <span class="nav-link-text">General</span>
-      </div>
-      <div class="nav-item">
-        <i class="fa-solid fa-tools menu-icon"></i>
-        <span class="nav-link-text">Advanced</span>
-      </div>
+        <span class="nav-link-text">Settings</span>
     </div>
-    <!-- Sección con submenús -->
-    <div class="menu-section">
-      <div class="menu-section-title">Gestión</div>
-      <div class="nav-item">
-        <i class="fa-solid fa-folder menu-icon"></i>
-        <span class="nav-link-text">Projects</span>
-      </div>
-      <div class="nav-item">
-          <i class="fa-solid fa-file menu-icon"></i>
-          <span class="nav-link-text">Active Projects</span>
-        </div>
-        <div class="nav-item">
-          <i class="fa-solid fa-archive menu-icon"></i>
-          <span class="nav-link-text">Archived Projects</span>
-        </div>
-    </div>
-
-    <!-- Sección de salir -->
-    <div class="menu-section">
-      <div class="menu-section-title">Cuenta</div>
-      <div class="nav-item">
+    <div class="nav-item">
         <i class="fa-solid fa-sign-out menu-icon"></i>
         <span class="nav-link-text">Logout</span>
-      </div>
     </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-Jeo85BFDZzTY86e3Gk4AGG4WvjZJAM+88bl1orct4Hfbs4nVDfCZZhzKU+BJ+TEG" crossorigin="anonymous"></script>
+</div>
+
+<!-- ENCABEZADO -->
+<div class="header">
+    <div class="logo">
+        <img src="logo.png" alt="Logo">
+    </div>
+
+    <div class="search-bar">
+        <input type="text" id="search" placeholder="Buscar...">
+        <button><i class="fas fa-search"></i> Buscar</button>
+    </div>
+
+    <div class="user-profile" onclick="toggleUserInfo()">
+        <span class="current-time" id="currentTime"></span>
+        <img src="user.png" alt="Perfil">
+        <div class="user-info" id="userInfo">
+            <img src="user.png" alt="Perfil"> 
+            <p><strong>Nombre:</strong> Usuario</p>
+            <p><strong>Email:</strong> usuario@email.com</p>
+            <p><a href="#">Configuración</a></p>
+            <p><a href="#">Cerrar Sesión</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- CONTENIDO -->
+<div class="content">
+    
+</div>
+
+<script>
+    // Toggle menú lateral
+    document.getElementById("toggleBtn").addEventListener("click", function() {
+        let sidebar = document.getElementById("sidebar");
+        let icon = document.getElementById("toggleIcon");
+
+        sidebar.classList.toggle("expanded");
+        icon.classList.toggle("fa-chevron-left");
+        icon.classList.toggle("fa-chevron-right");
+    });
+
+    // Mostrar / ocultar perfil
+    function toggleUserInfo() {
+        let userInfo = document.getElementById("userInfo");
+        userInfo.style.display = (userInfo.style.display === "block") ? "none" : "block";
+    }
+
+    // Cerrar perfil al hacer clic fuera
+    document.addEventListener("click", function(event) {
+        let profile = document.querySelector(".user-profile");
+        let userInfo = document.getElementById("userInfo");
+
+        if (!profile.contains(event.target)) {
+            userInfo.style.display = "none";
+        }
+    });
+
+    // Actualizar fecha y hora en tiempo real
+    function updateTime() {
+        const now = new Date();
+        const formattedTime = now.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) +
+                              " | " + now.toLocaleTimeString('es-ES');
+        document.getElementById("currentTime").textContent = formattedTime;
+    }
+
+    setInterval(updateTime, 1000);
+    updateTime(); // Llamar inmediatamente para evitar esperar el primer intervalo
+</script>
+
 </body>
 </html>
